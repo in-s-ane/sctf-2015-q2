@@ -1,0 +1,14 @@
+The unlock_flag() function seems to be making a call to the api to delete our flag :(.
+We can counteract this by simply redefining the function to the following:
+
+    var unlock_flag = function() {
+        $.post("/api/flag/unlock", function() {
+            $.post("/api/flag/unlock", function() {
+                display_message("#unlock_msg", "success", "done.");
+            });
+        });
+    }
+
+Now, you can view the flag at the account page.
+
+flag{1d5d38e5f226e32bd4dfce55}
