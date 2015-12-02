@@ -22,4 +22,9 @@ Ends in =, so it's likely base64. Deconverting shows that it ends in IEND,
 which means this is some image file.
 $ printf "iVBORw0KGgoAAAANSUhEUgAAAB4AAAAXAQMAAAAm8W0pAAAABlBMVEUAAAD///+l2Z/dAAAAaElEQVQI12M4Uxksw3D1e2gNw5nfwTYMV/+CWMVbZRj+////h6H3WeYahluvVoGIrDkQ1t1nQAIs+2/bciCxavUfhv9Zy0EEiFWe/Qciu3WbZgdDaHjWDoZQ8awZDNHhWXsYdgdndQAAbBA+tIufstkAAAAASUVORK5CYII=" | base64 -d > wtf
 Opening up "wtf" with an image viewer gives the text:
-BE SURE TO DRINK YOUR OVALTINE
+BE SURE TO DRINK YOUR OVALTINE!
+
+The text is the password to the zip file, and inputting the password,
+we get the flag.
+
+sctf{all_about_the_ctf}
