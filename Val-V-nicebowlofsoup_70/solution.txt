@@ -1,0 +1,5 @@
+If we look up Val Choung, we find her YouTube, with a video on Cats from HSF.
+Watching the video yields nothing, but looking at the transcript reveals the flag.
+
+https://www.youtube.com/watch?v=aDlNqsDdGMo
+sctf{bet_y0u_cant_h4x_it!}
