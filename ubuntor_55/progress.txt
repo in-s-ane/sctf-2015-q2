@@ -1,0 +1,25 @@
+Google "ubuntor" and we see that his name is Samuel Kim.
+Download his pic from the about page.
+Doing `xxd samkim.jpg`, we see there's a zip file in the image.
+Binwalk gives us this:
+
+DECIMAL   	HEX       	DESCRIPTION
+-------------------------------------------------------------------------------------------------------
+12        	0xC       	TIFF image data, big-endian
+16049     	0x3EB1    	LZMA compressed data, properties: 0x0C, dictionary size: 33554432 bytes, uncompressed size: 61503 bytes
+152861    	0x2551D   	Zip archive data, compressed size: 44, uncompressed size: 24, name: "flag.txt"  
+153041    	0x255D1   	End of Zip archive 
+
+153041-152861 = 180, which is the number of bytes we're interested in.
+
+$ cat samkim.jpg | tail -c 180 > sus.zip
+
+Attempting to extract from sus.zip shows that's it's encrypted.
+The QR code in the image gives us the following:
+iVBORw0KGgoAAAANSUhEUgAAAB4AAAAXAQMAAAAm8W0pAAAABlBMVEUAAAD///+l2Z/dAAAAaElEQVQI12M4Uxksw3D1e2gNw5nfwTYMV/+CWMVbZRj+////h6H3WeYahluvVoGIrDkQ1t1nQAIs+2/bciCxavUfhv9Zy0EEiFWe/Qciu3WbZgdDaHjWDoZQ8awZDNHhWXsYdgdndQAAbBA+tIufstkAAAAASUVORK5CYII=
+
+Ends in =, so it's likely base64. Deconverting shows that it ends in IEND,
+which means this is some image file.
+$ printf "iVBORw0KGgoAAAANSUhEUgAAAB4AAAAXAQMAAAAm8W0pAAAABlBMVEUAAAD///+l2Z/dAAAAaElEQVQI12M4Uxksw3D1e2gNw5nfwTYMV/+CWMVbZRj+////h6H3WeYahluvVoGIrDkQ1t1nQAIs+2/bciCxavUfhv9Zy0EEiFWe/Qciu3WbZgdDaHjWDoZQ8awZDNHhWXsYdgdndQAAbBA+tIufstkAAAAASUVORK5CYII=" | base64 -d > wtf
+Opening up "wtf" with an image viewer gives the text:
+BE SURE TO DRINK YOUR OVALTINE
