@@ -1,0 +1,6 @@
+Opening the executable in IDA, we see that the encryption algorithm is
+(8 * (x & 0x18)) | ((x & 0xE0) >> 2) | (x & 7)
+I don't know how to reverse the math, so constraint solve like always.
+Code in solve.py
+
+flag{my_w31ssm4n_sc0re_1z_0xFF_th3_ch4r7s}
