@@ -17,4 +17,4 @@ sumDigits x = step x 0
     where step 0 acc = acc
           step y acc = step (y `div` 10) (acc + (y `mod` 10))
 
-main = putStrLn . show . sumDigits $ f 20
+main = putStrLn . show . sumDigits $ f 30
