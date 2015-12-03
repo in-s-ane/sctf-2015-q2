@@ -1,0 +1,7 @@
+Write the functions g, w, and f as described.
+We compute f(30), then find the sum of the digits.
+It's a rather long number, so split into list of digits and add them up.
+
+$ ghc -O3 -rtsopts solve
+$ ./solve +RTS -K6G # let it have most of my memory
+443589491
