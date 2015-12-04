@@ -12,7 +12,7 @@ public class BFSMaze {
 
     public BFSMaze() {
         try {
-            Scanner ifstream = new Scanner(new File("words.txt"));
+            Scanner ifstream = new Scanner(new File("words-no-dupes.txt"));
             ArrayList<String> dict = new ArrayList<String>();
             while (ifstream.hasNext()) {
                 dict.add(ifstream.nextLine().trim().toUpperCase());
@@ -43,13 +43,30 @@ public class BFSMaze {
         grid[3][3] = 'Y';
     }
 
-    public boolean solve(int[] startCoor, String key) {
+    public int solve(int[] startCoor, String key) {
         Node current = null;
         Node buffer = new Node(startCoor[0] , startCoor[1], "");
 
         buffer.setParent(null);
         queue.add(buffer);
         char ELEMENT = ' ';
+        // Reset grid
+        grid[0][0] = 'E';
+        grid[0][1] = 'E';
+        grid[0][2] = 'C';
+        grid[0][3] = 'A';
+        grid[1][0] = 'A';
+        grid[1][1] = 'L';
+        grid[1][2] = 'E';
+        grid[1][3] = 'P';
+        grid[2][0] = 'H';
+        grid[2][1] = 'N';
+        grid[2][2] = 'B';
+        grid[2][3] = 'O';
+        grid[3][0] = 'Q';
+        grid[3][1] = 'T';
+        grid[3][2] = 'T';
+        grid[3][3] = 'Y';
         while (!queue.empty()) {
             current = queue.pop();
             if (
@@ -64,7 +81,7 @@ public class BFSMaze {
             String tmp = current.built + ELEMENT;
             if (tmp.equals(key)) {
                 System.out.printf("\tMatched: %s\n", tmp);
-                return true;
+                return 1;
             }
             if (ELEMENT == VISITED) {
                 continue;
@@ -81,16 +98,28 @@ public class BFSMaze {
             Node iter1 = new Node(current.r + 1 , current.c, tmp);
             Node iter2 = new Node(current.r , current.c - 1, tmp);
             Node iter3 = new Node(current.r , current.c + 1, tmp);
+            Node iter4 = new Node(current.r - 1 , current.c - 1, tmp);
+            Node iter5 = new Node(current.r + 1 , current.c + 1, tmp);
+            Node iter6 = new Node(current.r + 1, current.c - 1, tmp);
+            Node iter7 = new Node(current.r - 1, current.c + 1, tmp);
             iter0.setParent(current);
             iter1.setParent(current);
             iter2.setParent(current);
             iter3.setParent(current);
+            iter4.setParent(current);
+            iter5.setParent(current);
+            iter6.setParent(current);
+            iter7.setParent(current);
             queue.add(iter0);
             queue.add(iter1);
             queue.add(iter2);
             queue.add(iter3);
+            queue.add(iter4);
+            queue.add(iter5);
+            queue.add(iter6);
+            queue.add(iter7);
         }
-        return false;
+        return 0;
     }
 
     public void run() {
@@ -99,50 +128,53 @@ public class BFSMaze {
             if (i % 500 == 0) {
                 System.out.printf("Word: %d / %d. Current sum: %d\n", i, words.size(), total);
             }
+            int sum = 0;
             switch (words.get(i).charAt(0)) {
                 case 'A':
-                    total += solve(new int[]{0,3}, words.get(i)) ? 1 : 0;
-                    total += solve(new int[]{1,0}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{0,3}, words.get(i));
+                    sum += solve(new int[]{1,0}, words.get(i));
                     break;
                 case 'B':
-                    total += solve(new int[]{2,2}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{2,2}, words.get(i));
                     break;
                 case 'C':
-                    total += solve(new int[]{0,3}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{0,3}, words.get(i));
                     break;
                 case 'E':
-                    total += solve(new int[]{0,0}, words.get(i)) ? 1 : 0;
-                    total += solve(new int[]{0,1}, words.get(i)) ? 1 : 0;
-                    total += solve(new int[]{1,2}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{0,0}, words.get(i));
+                    sum += solve(new int[]{0,1}, words.get(i));
+                    sum += solve(new int[]{1,2}, words.get(i));
                     break;
                 case 'H':
-                    total += solve(new int[]{2,0}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{2,0}, words.get(i));
                     break;
                 case 'L':
-                    total += solve(new int[]{1,1}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{1,1}, words.get(i));
                     break;
                 case 'N':
-                    total += solve(new int[]{2,1}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{2,1}, words.get(i));
                     break;
                 case 'O':
-                    total += solve(new int[]{2,3}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{2,3}, words.get(i));
                     break;
                 case 'P':
-                    total += solve(new int[]{1,3}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{1,3}, words.get(i));
                     break;
                 case 'Q':
-                    total += solve(new int[]{3,0}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{3,0}, words.get(i));
                     break;
                 case 'T':
-                    total += solve(new int[]{3,1}, words.get(i)) ? 1 : 0;
-                    total += solve(new int[]{3,2}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{3,1}, words.get(i));
+                    sum += solve(new int[]{3,2}, words.get(i));
                     break;
                 case 'Y':
-                    total += solve(new int[]{3,3}, words.get(i)) ? 1 : 0;
+                    sum += solve(new int[]{3,3}, words.get(i));
                     break;
                 default:
                     break;
             }
+            total += (sum == 0) ? 0 : 1;
         }
+        System.out.println(total);
     }
 }
