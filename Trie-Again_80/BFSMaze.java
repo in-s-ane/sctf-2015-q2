@@ -1,6 +1,6 @@
-import java.util.Scanner;
-import java.util.ArrayList;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BFSMaze {
 
@@ -9,13 +9,18 @@ public class BFSMaze {
     private char[][] grid;
     private MazeQueue queue;
     private ArrayList<String> words;
+    private ArrayList<String> matches;
 
     public BFSMaze() {
         try {
-            Scanner ifstream = new Scanner(new File("words-no-dupes.txt"));
+            matches = new ArrayList<String>();
+            Scanner ifstream = new Scanner(new File("words.txt"));
             ArrayList<String> dict = new ArrayList<String>();
             while (ifstream.hasNext()) {
-                dict.add(ifstream.nextLine().trim().toUpperCase());
+                String word = ifstream.nextLine().trim().toUpperCase();
+                if (word.matches("[ECALPHNBOQTY]+") && ! dict.contains(word)) {
+                    dict.add(word);
+                }
             }
             ifstream.close(); ifstream = null;
             words = dict;
@@ -80,9 +85,14 @@ public class BFSMaze {
             ELEMENT = grid[current.r][current.c];
             String tmp = current.built + ELEMENT;
             if (tmp.equals(key)) {
-                System.out.printf("\tMatched: %s\n", tmp);
+                System.out.printf("Matched: %s\n", tmp);
+                return 1;
+            } else if ((tmp+"LEE").equals(key)) {
+                // LEE never matches...
+                System.out.printf("Hack matched: %s\n", tmp+"LEE");
                 return 1;
             }
+
             if (ELEMENT == VISITED) {
                 continue;
             }
@@ -99,9 +109,9 @@ public class BFSMaze {
             Node iter2 = new Node(current.r , current.c - 1, tmp);
             Node iter3 = new Node(current.r , current.c + 1, tmp);
             Node iter4 = new Node(current.r - 1 , current.c - 1, tmp);
-            Node iter5 = new Node(current.r + 1 , current.c + 1, tmp);
-            Node iter6 = new Node(current.r + 1, current.c - 1, tmp);
             Node iter7 = new Node(current.r - 1, current.c + 1, tmp);
+            Node iter6 = new Node(current.r + 1, current.c - 1, tmp);
+            Node iter5 = new Node(current.r + 1 , current.c + 1, tmp);
             iter0.setParent(current);
             iter1.setParent(current);
             iter2.setParent(current);
@@ -129,52 +139,57 @@ public class BFSMaze {
                 System.out.printf("Word: %d / %d. Current sum: %d\n", i, words.size(), total);
             }
             int sum = 0;
-            switch (words.get(i).charAt(0)) {
+            String word = words.get(i);
+            switch (word.charAt(0)) {
                 case 'A':
-                    sum += solve(new int[]{0,3}, words.get(i));
-                    sum += solve(new int[]{1,0}, words.get(i));
+                    sum += solve(new int[]{0,3}, word);
+                    sum += solve(new int[]{1,0}, word);
                     break;
                 case 'B':
-                    sum += solve(new int[]{2,2}, words.get(i));
+                    sum += solve(new int[]{2,2}, word);
                     break;
                 case 'C':
-                    sum += solve(new int[]{0,3}, words.get(i));
+                    sum += solve(new int[]{0,2}, word);
                     break;
                 case 'E':
-                    sum += solve(new int[]{0,0}, words.get(i));
-                    sum += solve(new int[]{0,1}, words.get(i));
-                    sum += solve(new int[]{1,2}, words.get(i));
+                    sum += solve(new int[]{0,0}, word);
+                    sum += solve(new int[]{0,1}, word);
+                    sum += solve(new int[]{1,2}, word);
                     break;
                 case 'H':
-                    sum += solve(new int[]{2,0}, words.get(i));
+                    sum += solve(new int[]{2,0}, word);
                     break;
                 case 'L':
-                    sum += solve(new int[]{1,1}, words.get(i));
+                    sum += solve(new int[]{1,1}, word);
                     break;
                 case 'N':
-                    sum += solve(new int[]{2,1}, words.get(i));
+                    sum += solve(new int[]{2,1}, word);
                     break;
                 case 'O':
-                    sum += solve(new int[]{2,3}, words.get(i));
+                    sum += solve(new int[]{2,3}, word);
                     break;
                 case 'P':
-                    sum += solve(new int[]{1,3}, words.get(i));
+                    sum += solve(new int[]{1,3}, word);
                     break;
                 case 'Q':
-                    sum += solve(new int[]{3,0}, words.get(i));
+                    sum += solve(new int[]{3,0}, word);
                     break;
                 case 'T':
-                    sum += solve(new int[]{3,1}, words.get(i));
-                    sum += solve(new int[]{3,2}, words.get(i));
+                    sum += solve(new int[]{3,1}, word);
+                    sum += solve(new int[]{3,2}, word);
                     break;
                 case 'Y':
-                    sum += solve(new int[]{3,3}, words.get(i));
+                    sum += solve(new int[]{3,3}, word);
                     break;
                 default:
                     break;
             }
-            total += (sum == 0) ? 0 : 1;
+            if (sum != 0) {
+                matches.add(word);
+                total += 1;
+            }
         }
         System.out.println(total);
+        System.out.println(matches);
     }
 }
