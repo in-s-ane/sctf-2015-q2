@@ -1,8 +1,0 @@
-First input must have an even length
-Must be hex characters
-Runs ord() on something in the first input
-Seems to output "You done f**ked up." if the thing throws an error
-Page is written in php
-Inputting "" or '' or two spaces in the first input seems to ignore them
-
-Decodes hex, then runs ord() on output.
