@@ -11,9 +11,6 @@ data = {}
 def random_useragent():
     return "".join([random.choice(string.ascii_letters) for x in range(100)])
 
-for x in range(1, 26):
-    data["input%s" % x] = "a"
-
 def query(post):
     response = requests.post(url, data=post, headers={"User-Agent": random_useragent()})
     return response
