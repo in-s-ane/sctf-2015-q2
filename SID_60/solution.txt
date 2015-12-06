@@ -1,0 +1,11 @@
+The .sid file extension signifies a sound file used by the Commodore 64. The title, author, and
+release date have all been redacted, so simply opening up the song in a music player (such as audacious) will
+not work. Instead, since there was really no other way to get the name of the song, I decided to
+search in this nice database provided by HVSC (http://www.hvsc.c64.org/). The database is gigantic, and
+there are a ton of songs, which makes it difficult to listen to each and every one of them for a match.
+Instead, I chose to grep for some data in mystery.sid, and see if any song in the database contains
+that data.
+
+A match is found in Berggreen_I_Am.sid, giving us the name of the song.
+
+sctf{Berggreen I Am}
