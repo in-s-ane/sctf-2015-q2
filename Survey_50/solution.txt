@@ -1,0 +1,3 @@
+Complete the survey to get the flag
+
+sctf{surveyshelp}
