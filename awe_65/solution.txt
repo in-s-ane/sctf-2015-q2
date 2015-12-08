@@ -1,0 +1,36 @@
+A quick whois of Aaron Weiss's website, aaronweiss.us, we find the following bits of information.
+
+    Registrant Address1:                         P.O. Box 227
+    Registrant City:                             Chappaqua
+    Registrant State/Province:                   NY
+    Registrant Postal Code:                      10514
+    Registrant Country:                          United States
+    Registrant Country Code:                     US
+    Registrant Phone Number:                     +1.7324917923
+    Registrant Email:                            aaronweiss74@gmail.com
+
+It just so happens that Bill Clinton lived in Chappaqua. However, we aren't given a real street
+address, and Aaron most definitely did not live in a PO Box. Looking at Aaron's Facebook friends,
+we can find a list of family members, which we can search up to find possible addresses.
+Isis ia a pretty unique name, so let's search her up
+
+    https://www.peoplesmart.com/default-name-results?Find=Isis%20Weiss&Address=101%20Rambling%20Brook%20Rd&FirstName=Isis&LastName=Weiss
+
+As confirmed, we find that she previously lived in Chappaqua, NY.
+We are also given information that she's called Isis Weiss, Isis F. Weiss, and Isis Navarro.
+Looking up Isis Navarro's public records, we find a bunch of previous addresses.
+
+    http://publicrecords.directory/profiles/isis-navarro.3333005.html
+
+    Previous Addresses: 1503 Eagles Ridge Rd, Brewster, NY 10509,
+    400 King St, Chappaqua, NY 10514,
+    18 Daly Cross Rd, Mount Kisco, NY 10549,
+    25 Maple Ave, Chappaqua, NY 10514,
+    330 48th St #4, Union City, NJ 07087,
+    6960 Rue Vendome, Miami, FL 33141,
+    4418 New York Ave, Union City, NJ 07087,
+    6017 Adams St #1ST, West New York, NJ 07093
+
+Trying both addressses in Chappaqua, we find the correct one being on 25 Maple Avenue. (Note how we have to expand Ave to Avenue)
+
+25 Maple Avenue, Chappaqua, NY 10514
