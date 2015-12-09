@@ -22,7 +22,7 @@ for x in range(80):
         # Valid base64, so let's decode it
         enc = enc.decode("base64")
     else:
-        # Not valid, so let's brute force the caesar shift used
+        # Not valid, so let's brute force the caesar shift used and check each shift
         for y in range(1,len(alphabet)):
             if is_valid_base64(caesar(enc, y)):
                 enc = caesar(enc, y)
@@ -31,8 +31,8 @@ for x in range(80):
 
 print enc
 
-# Looking at encrypt.py, it was clear that we needed to do some brute forcing,
-# since RNG decides how to encrypt the flag.
+# Looking at encrypt.py, its clear that we need to do some brute forcing,
+# since RNG decides how and when to encrypt the flag.
 # Running this script will yield the flag.
 
 # sctf{thank_you_based_64}

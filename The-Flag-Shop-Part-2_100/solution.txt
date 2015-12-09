@@ -1,5 +1,6 @@
 Unlike the previous problem, we can't really do anything to stop the execution server-side.
-The hint tells us to be quick, so there's only one possibility left:
-Quickly run unlock_flag(), and refresh the page, viewing the flag before the server can delete it.
+The hint tells us to be quick, so there's only one real possibility left.
+Quickly run unlock_flag(), and refresh the page, viewing the flag before the server has the
+change to delete it.
 
 flag{4f8703d93bdb7b46615e498d}

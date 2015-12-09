@@ -1,3 +1,3 @@
-Hop onto the irc channel and view the flag in the banner.
+Hop onto the irc channel and view the flag in the topic.
 
 flag{hanging_on_irc}

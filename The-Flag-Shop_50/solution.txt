@@ -9,6 +9,6 @@ We can counteract this by simply redefining the function to the following:
         });
     }
 
-Now, you can view the flag at the account page.
+Now, we can view the flag at the account page.
 
 flag{1d5d38e5f226e32bd4dfce55}
